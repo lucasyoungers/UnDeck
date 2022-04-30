@@ -1,0 +1,8 @@
+{
+  "name": "undeck-react",
+  "scripts": {
+    "start": "cd api && node server.js",
+    "heroku-postbuild": "cd undeck && npm install && npm run build",
+    "build": "webpack"
+  }
+}
