@@ -91,5 +91,5 @@ async function makePDF(deck) {
   return res;
 }
 
-const PORT = 3080;
+const PORT = process.env.PORT || 3080;
 app.listen(PORT);
