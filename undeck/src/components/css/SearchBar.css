@@ -1,0 +1,18 @@
+.header__search {
+  flex: 1;
+  display: flex;
+}
+
+.header__search__bar {
+  padding-left: 15px;
+  border: none;
+  border-radius: var(--radius) 0 0 var(--radius);
+  flex: 1;
+}
+
+.header__search__button {
+  border: none;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background-color: var(--p-purple);
+  flex: 0;
+}

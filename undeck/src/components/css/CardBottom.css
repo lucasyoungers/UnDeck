@@ -1,0 +1,30 @@
+.card__bottom {
+  display: flex;
+  height: 2.5em;
+}
+
+.card__bottom > button {
+  flex: 1;
+  height: 100%;
+  border: none;
+  background-color: var(--p-light-light-purple);
+  transition: 0.1s;
+}
+
+.card__bottom > button:hover {
+  background-color: var(--p-light-purple);
+}
+
+.card__bottom > button:first-of-type {
+  border-radius: 0 0 0 0.5em;
+}
+
+.card__bottom > button:last-of-type {
+  border-radius: 0 0 0.5em 0;
+}
+
+.card__bottom .icon {
+  margin: auto;
+  height: 50%;
+  aspect-ratio: 1 / 1;
+}

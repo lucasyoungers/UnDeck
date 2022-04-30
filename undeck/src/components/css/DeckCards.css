@@ -1,0 +1,24 @@
+.deck__cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: var(--gap);
+  flex: 3;
+}
+
+@media screen and (max-width: 1200px) {
+  .deck__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .deck__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .deck__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

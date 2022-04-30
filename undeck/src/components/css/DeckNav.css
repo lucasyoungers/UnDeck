@@ -1,0 +1,22 @@
+.header__deck {
+  display: flex;
+  flex: 0;
+  gap: 1px;
+}
+
+.header__deck button {
+  flex: 0;
+  border: none;
+  background-color: var(--p-purple);
+  display: flex;
+}
+
+.header__deck__button {
+  border-radius: var(--radius) 0 0 var(--radius);
+  display: flex;
+  align-items: center;
+}
+
+.header__deck__delete {
+  border-radius: 0 var(--radius) var(--radius) 0;
+}

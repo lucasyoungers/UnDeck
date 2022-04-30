@@ -1,0 +1,27 @@
+.header {
+  padding: 1.5% var(--gap);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  justify-content: center;
+  align-items: center;
+}
+
+.header * {
+  font-size: 18px;
+}
+
+.header button {
+  background-color: var(--p-purple);
+  color: white;
+  padding: 12px;
+}
+
+.header button:disabled {
+  color: var(--p-light-purple);
+}
+
+.header button > * {
+  margin: auto;
+  line-height: 0;
+}

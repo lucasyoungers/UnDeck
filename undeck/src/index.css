@@ -1,0 +1,25 @@
+:root {
+  --gap: 18px;
+  --nav-height: 50px;
+  --p-purple: #4f2475;
+  --p-dark-purple: #3b165c;
+  --p-light-purple: #baa8ca;
+  --p-light-light-purple: #e6dfec;
+  --radius: 5px;
+  --item-size: 100px;
+  --item-spacing: calc(var(--item-size) / 10);
+  --item-color: var(--p-purple);
+  --timing: 3000ms;
+}
+
+body,
+body * {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  background-image: url("assets/images/subtle-pattern-vector.png");
+  background-color: #baa8ca;
+}
