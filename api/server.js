@@ -36,20 +36,23 @@ app.get("/api/pdf/:deckstring", async (req, res) => {
 
 app.get("/api/random", async (req, res) => {
   try {
-    let rarity = req.query.rarity;
-    // const q = req.query.q || "";
-    rarity = "high";
-    // let q = "name:metapod "
-    //   + (rarity === "high" && `rarity:"Common Uncommon"`);
+    const q = req.query.q || "";
     const pageSize = req.query.pageSize || 1;
-    const page = Math.floor(Math.random() * (await pokemon.card.where({ pageSize: 1 })).totalCount / pageSize) || 1;
-    const cards = await pokemon.card.where({ /* q: "name:beedrill rarity:common", */ pageSize, page });
+    const page = Math.floor(Math.random() * (await pokemon.card.where({ q, pageSize: 1 })).totalCount / pageSize) || 1;
+    const cards = await pokemon.card.where({ q, pageSize, page });
     res.json(cards);
   } catch (err) {
-    console.error(err);
-    res.status(500).send("something went wrong on the server");
+    res.status(500).type("text").send("something went wrong on the server");
   }
 });
+
+app.get("/api/rarities", async (req, res) => {
+  try {
+    res.json(await pokemon.rarity.all())
+  } catch (err) {
+    res.status(500).type("text").send("something went wrong on the server")
+  }
+})
 
 app.get("*", (req, res) => {
   res.type("html").sendFile(path.join(__dirname, "../undeck/build/index.html"));

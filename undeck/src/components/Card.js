@@ -6,7 +6,7 @@ function Card({ card, count }) {
       {count && <div className="card__count">{count + "\u00d7"}</div>}
       <img
         className="card__image"
-        src={card.images.small || card.images.large}
+        src={card.images.small}
         alt={card.name}
         loading="lazy"
       />

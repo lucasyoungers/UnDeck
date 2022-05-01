@@ -11,12 +11,21 @@ export function openDeckPDF(deckString) {
     });
 }
 
-export function getCards() {
-  return fetch(`/api/random?pageSize=` + 50)
-    .then(statusCheck)
-    .then(res => res.json())
-    .then(res => res.data)
-    .catch(handleError);
+export async function getCards(pageSize = 50) {
+  try {
+    const rarities = await (await fetch("/api/rarities")).json()
+    const lowRarities = ["Common", "Uncommon", "Rare", "Rare Holo", "Promo"]
+    const highRarities = rarities.filter(rarity => !lowRarities.includes(rarity))
+    const randomURL = "/api/random?pageSize=" + pageSize + "&q=!rarity:\"" + highRarities.join("|") + "\""
+    return fetch(randomURL)
+      .then(statusCheck)
+      .then(res => res.json())
+      .then(res => res.data)
+      .then(res => res.sort(() => Math.random() - 0.5))
+      .catch(handleError)
+  } catch(err) {
+    handleError(err)
+  }
 }
 
 export function getDeck() {
