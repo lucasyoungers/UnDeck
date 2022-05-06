@@ -21,9 +21,21 @@ pokemon.configure({ apiKey: KEY });
 // Endpoints
 // =========
 
-app.get("/api/pdf/:deckstring", async (req, res) => {
+app.get("/api/deck/:deckString", async (req, res) => {
   try {
-    const ids = req.params.deckstring.split("|");
+    const deckString = req.params.deckString
+    const ids =  deckString.split("|")
+    const deck = await Promise.all(ids.map(id => pokemon.card.find(id)))
+    res.json(deck)
+  } catch (err) {
+    console.error(err)
+    res.status(500).send("on no! our code! it's broken!")
+  }
+})
+
+app.get("/api/pdf/:deckString", async (req, res) => {
+  try {
+    const ids = req.params.deckString.split("|");
     const deck = await Promise.all(ids.map(id => pokemon.card.find(id)));
     const images = deck.map(card => card.images.large);
     const buffer = Buffer.from(await makePDF(images));
@@ -53,6 +65,26 @@ app.get("/api/rarities", async (req, res) => {
     res.status(500).type("text").send("something went wrong on the server")
   }
 })
+
+app.get("/api/*", async (req, res) => {
+  let path = req.params[0];
+  let query = "";
+  let queryKeys = Object.keys(req.query);
+  queryKeys.forEach(key => {
+    query += "&" + key + "=" + req.query[key];
+  });
+  if (query) {
+    query = "?" + query.slice(1);
+  }
+  let full = URL + "/" + path + query;
+  try {
+    let result = await axios.get(full, { headers: HEADERS });
+    statusCheck(result);
+    res.json(result.data);
+  } catch (err) {
+    res.status(400).type("text").send("bad request");
+  }
+});
 
 app.get("*", (req, res) => {
   res.type("html").sendFile(path.join(__dirname, "../undeck/build/index.html"));

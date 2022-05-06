@@ -29,11 +29,28 @@ export async function getCards(pageSize = 50) {
 }
 
 export function getDeck() {
-  return fetch("api/random?pageSize=" + 10)
+  return fetch("api/deck/" + window.localStorage.deck)
     .then(statusCheck)
     .then(res => res.json())
-    .then(res => res.data)
     .catch(handleError);
+}
+
+export function addToLocalDeck(id) {
+  const deckString = window.localStorage.deck
+  let deck = deckString ? deckString.split("|") : []
+  deck.push(id)
+  window.localStorage.deck = deck.join("|")
+}
+
+export function removeFromLocalDeck(id) {
+  const deckString = window.localStorage.deck
+  let deck = deckString ? deckString.split("|") : []
+  deck.splice(deck.indexOf(id), 1)
+  window.localStorage.deck = deck.join("|")
+}
+
+export function deleteLocalDeck() {
+  window.localStorage.deck = ""
 }
 
 async function statusCheck(res) {

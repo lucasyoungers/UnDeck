@@ -2,11 +2,11 @@ import "./css/DeckNav.css";
 import DeckButton from "./DeckButton.js";
 import DeckDelete from "./DeckDelete.js";
 
-function Nav() {
+function Nav({ deck }) {
   return (
     <nav className="header__deck">
-      <DeckButton />
-      <DeckDelete />
+      <DeckButton deck={deck} />
+      <DeckDelete deck={deck} />
     </nav>
   )
 }
