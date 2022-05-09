@@ -13,12 +13,12 @@ import DeckCards from "./DeckCards.js";
 import DeckAside from "./DeckAside.js";
 
 function Deck() {
-  const { deck } = useSelector(state => state.deck)
+  const { deck, count } = useSelector(state => state.deck)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  if (count === 0) navigate("/")
   useEffect(() => {
-    if (deck.length === 0) navigate("/")
     if (window.localStorage.deck) {
       getDeck().then(deck => dispatch(setDeck(deck)))
     }

@@ -1,9 +1,10 @@
 import CardBottom from "./CardBottom.js";
+import CardCounter from "./CardCounter.js";
 
 function Card({ card, count }) {
   return (
     <article id={card.id} className="card">
-      {count && <div className="card__count">{count + "\u00d7"}</div>}
+      {count && <CardCounter count={count} />}
       <img
         className="card__image"
         src={card.images.small}
