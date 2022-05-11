@@ -8,7 +8,6 @@ export const cardsSlice = createSlice({
   reducers: {
     setCards: (state, action) => {
       state.cards = action.payload
-      state.cards.sort(() => Math.random() - 0.5)
     }
   }
 })
