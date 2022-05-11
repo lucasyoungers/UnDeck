@@ -66,6 +66,16 @@ app.get("/api/rarities", async (req, res) => {
   }
 })
 
+app.get("/api/cards", async (req, res) => {
+  try {
+    const name = req.query.name
+    const cards = await pokemon.card.where({ q: `name:"*${name}*"` })
+    res.json(cards)
+  } catch (err) {
+    res.status(400).type("text").send("invalid request")
+  }
+})
+
 app.get("/api/*", async (req, res) => {
   let path = req.params[0];
   let query = "";

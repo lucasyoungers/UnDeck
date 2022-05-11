@@ -35,6 +35,14 @@ export function getDeck() {
     .catch(handleError);
 }
 
+export function getSearch(query) {
+  return fetch("api/cards/" + query)
+    .then(statusCheck)
+    .then(res => res.json())
+    .then(res => res.data)
+    .catch(handleError)
+}
+
 export function addToLocalDeck(id) {
   const deckString = window.localStorage.deck
   let deck = deckString ? deckString.split("|") : []
