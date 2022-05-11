@@ -13,10 +13,14 @@ function SearchBar() {
         type="submit"
         onClick={e => {
           e.preventDefault()
+          let bar = document.querySelector(".header__search__bar")
+          let val = bar.value.trim()
+          if (!val) return
           navigate({
             pathname: "/",
-            search: `?name=${document.querySelector(".header__search__bar").value}`
+            search: `?name=${val}`
           });
+          bar.value = ""
         }}
       >
         <SearchSVG />
