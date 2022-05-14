@@ -9,4 +9,8 @@
   .deck {
     flex-direction: column;
   }
+
+  .deck__aside__chart {
+    width: 100% !important;
+  }
 }

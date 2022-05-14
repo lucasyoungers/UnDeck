@@ -8,7 +8,7 @@ function DeckChart() {
   console.log(supertypes)
 
   return (
-    <div id="asdf">
+    <div className="deck__aside__chart">
       <Bar
         data={{
           labels: Object.keys(supertypes),

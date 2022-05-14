@@ -1,6 +1,5 @@
 .deck__aside {
   background-color: white;
-  flex: 2;
   height: 100%;
   padding: var(--gap);
   border-radius: var(--radius);
@@ -9,10 +8,10 @@
   row-gap: var(--gap);
 }
 
-/* .deck__aside__chart {
-  max-width: 100%;
-  height: 100%;
-} */
+.deck__aside__chart {
+  position: relative;
+  width: 40vw;
+}
 
 .deck__aside__download {
   width: 100%;
@@ -25,9 +24,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-#asdf {
-  max-width: 100%;
-  height: 100%;
 }
