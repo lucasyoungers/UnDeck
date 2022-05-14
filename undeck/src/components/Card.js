@@ -1,7 +1,11 @@
-import CardBottom from "./CardBottom.js";
-import CardCounter from "./CardCounter.js";
+import { useDispatch } from "react-redux"
+import { setType } from "../redux/modal.js"
+import CardBottom from "./CardBottom.js"
+import CardCounter from "./CardCounter.js"
 
 function Card({ card, count }) {
+  const dispatch = useDispatch()
+
   return (
     <article id={card.id} className="card">
       {count && <CardCounter count={count} />}
@@ -10,6 +14,9 @@ function Card({ card, count }) {
         src={card.images.small}
         alt={card.name}
         loading="lazy"
+        onClick={() => {
+          dispatch(setType("text"))
+        }}
       />
       <CardBottom card={card} />
     </article>

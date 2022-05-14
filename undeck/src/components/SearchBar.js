@@ -19,7 +19,7 @@ function SearchBar() {
           navigate({
             pathname: "/",
             search: `?name=${val}`
-          });
+          })
           bar.value = ""
         }}
       >

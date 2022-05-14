@@ -1,0 +1,38 @@
+/* .ReactModalPortal {
+  overflow: scroll !important;
+} */
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  overflow: scroll !important;
+}
+
+.ReactModal__Content {
+  width: 640px;
+  height: max-content;
+  margin: 0 auto;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.ReactModal__Content[role="image"] {
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  top: 1vh !important;
+}
+
+.ReactModal__Content[role="image"] > img {
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .ReactModal__Content {
+    width: 80%;
+  }
+}

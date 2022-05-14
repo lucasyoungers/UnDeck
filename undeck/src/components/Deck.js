@@ -28,7 +28,7 @@ function Deck() {
   return (
     <main className="deck">
       <DeckCards deck={deck} />
-      <DeckAside deck={deck} />
+      <DeckAside />
     </main>
   )
 }
