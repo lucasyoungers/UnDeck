@@ -1,0 +1,5 @@
+.footer {
+  width: 100%;
+  margin: 0 var(--gap) var(--gap);
+  text-align: center;
+}

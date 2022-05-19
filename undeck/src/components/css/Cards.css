@@ -1,5 +1,5 @@
 .cards {
-  margin: 0 var(--gap);
+  margin: 0 var(--gap) var(--gap);
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: var(--gap);

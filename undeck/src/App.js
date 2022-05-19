@@ -8,6 +8,7 @@ import TextModal from "./components/TextModal"
 import Header from "./components/Header"
 import Cards from "./components/Cards"
 import Deck from "./components/Deck"
+import Footer from "./components/Footer"
 
 function App() {
   const location = useLocation()
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<Cards key={query} />} />
         <Route path="deck/*" element={<Deck />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
