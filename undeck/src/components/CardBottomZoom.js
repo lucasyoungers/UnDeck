@@ -1,4 +1,7 @@
+// Libraries
 import { useDispatch } from "react-redux"
+
+// Utils
 import { setType, setCard } from "../redux/modal"
 
 function CardBottomZoom({ card }) {

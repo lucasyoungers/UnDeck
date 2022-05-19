@@ -2,13 +2,15 @@
 import { Routes, Route, useLocation } from "react-router-dom"
 
 // Components
-import './App.css';
 import ImageModal from "./components/ImageModal"
 import TextModal from "./components/TextModal"
 import Header from "./components/Header"
 import Cards from "./components/Cards"
 import Deck from "./components/Deck"
 import Footer from "./components/Footer"
+
+// CSS
+import "./App.css"
 
 function App() {
   const location = useLocation()
@@ -25,7 +27,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
-  );
+  )
 }
 
 export default App

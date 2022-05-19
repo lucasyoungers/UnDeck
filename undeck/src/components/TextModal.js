@@ -1,14 +1,19 @@
+// Libraries
 import { useSelector } from "react-redux"
 import uuid from "react-uuid"
-import Modal from "../components/Modal"
-import ModalAttack from "../components/ModalAttack"
-import ModalAbility from "../components/ModalAbility"
+
+// Components
+import Modal from "./Modal"
+import ModalAttack from "./ModalAttack"
+import ModalAbility from "./ModalAbility"
+
+// CSS
 import "./css/TextModal.css"
 
 function TextModal() {
   const { type, card } = useSelector(state => state.modal)
 
-  let cardType;
+  let cardType
   if (card.supertype === "Pokémon") {
     if (!card.evolvesFrom) {
       cardType = <>Basic Pokémon</>

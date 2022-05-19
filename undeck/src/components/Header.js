@@ -1,16 +1,18 @@
 // Libraries
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
 
 // Utils
 import { setDeck } from "../redux/deck"
 import { getDeck } from "../utils"
 
 // Components
-import "./css/Header.css";
-import Logo from "./Logo.js";
-import SearchBar from "./SearchBar.js";
-import Nav from "./Nav.js";
+import Logo from "./Logo"
+import SearchBar from "./SearchBar"
+import Nav from "./Nav"
+
+// CSS
+import "./css/Header.css"
 
 function Header() {
   const { deck } = useSelector(state => state.deck)
@@ -32,4 +34,4 @@ function Header() {
   )
 }
 
-export default Header;
+export default Header

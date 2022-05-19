@@ -1,3 +1,4 @@
+// Libraries
 import uuid from "react-uuid"
 
 function ModalAttack({ attack }) {

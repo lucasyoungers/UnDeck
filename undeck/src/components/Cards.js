@@ -1,14 +1,18 @@
+// Libraries
 import uuid from "react-uuid"
-import "./css/Cards.css";
-import Card from "./Card.js";
-
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useLocation } from "react-router-dom"
 
 // Utils
 import { setCards } from "../redux/cards"
 import { getCards, getSearch } from "../utils"
+
+// Components
+import Card from "./Card"
+
+// CSS
+import "./css/Cards.css"
 
 function Cards() {
   const { cards } = useSelector(state => state.cards)

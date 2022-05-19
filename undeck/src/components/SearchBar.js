@@ -1,7 +1,11 @@
+// Libraries
 import { useNavigate } from "react-router-dom"
-import "./css/SearchBar.css";
-// import "./svg/SearchSVG.js";
-import SearchSVG from "./svg/SearchSVG";
+
+// Components
+import SearchSVG from "./svg/SearchSVG"
+
+// CSS
+import "./css/SearchBar.css"
 
 function SearchBar() {
   const navigate = useNavigate()
@@ -29,4 +33,4 @@ function SearchBar() {
   )
 }
 
-export default SearchBar;
+export default SearchBar

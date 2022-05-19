@@ -1,7 +1,12 @@
+// Libraries
 import { useDispatch } from "react-redux"
-import { setType, setCard } from "../redux/modal.js"
-import CardBottom from "./CardBottom.js"
-import CardCounter from "./CardCounter.js"
+
+// Utils
+import { setType, setCard } from "../redux/modal"
+
+// Components
+import CardBottom from "./CardBottom"
+import CardCounter from "./CardCounter"
 
 function Card({ card, count }) {
   const dispatch = useDispatch()
@@ -24,4 +29,4 @@ function Card({ card, count }) {
   );
 }
 
-export default Card;
+export default Card

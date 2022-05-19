@@ -1,8 +1,12 @@
+// Libraries
 import { useDispatch } from "react-redux"
 import ReactModal from "react-modal"
-import "./css/Modal.css"
 
+// Utils
 import { setType } from "../redux/modal"
+
+// CSS
+import "./css/Modal.css"
 
 function Modal({ isOpen, role, children }) {
   const dispatch = useDispatch()

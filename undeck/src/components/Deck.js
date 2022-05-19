@@ -1,16 +1,18 @@
 // Libraries
 import { useNavigate } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
 
 // Utils
 import { setDeck } from "../redux/deck"
 import { getDeck } from "../utils"
 
 // Components
-import "./css/Deck.css";
-import DeckCards from "./DeckCards.js";
-import DeckAside from "./DeckAside.js";
+import DeckCards from "./DeckCards"
+import DeckAside from "./DeckAside"
+
+// CSS
+import "./css/Deck.css"
 
 function Deck() {
   const { deck, count } = useSelector(state => state.deck)
@@ -33,4 +35,4 @@ function Deck() {
   )
 }
 
-export default Deck;
+export default Deck

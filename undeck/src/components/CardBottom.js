@@ -1,9 +1,14 @@
-import { useLocation } from "react-router-dom";
-import "./css/CardBottom.css";
-import CardBottomAdd from "./CardBottomAdd.js";
-import CardBottomRemove from "./CardBottomRemove.js";
-import CardBottomDownload from "./CardBottomDownload.js";
-import CardBottomZoom from "./CardBottomZoom.js";
+// Libraries
+import { useLocation } from "react-router-dom"
+
+// Components
+import CardBottomAdd from "./CardBottomAdd"
+import CardBottomRemove from "./CardBottomRemove"
+import CardBottomDownload from "./CardBottomDownload"
+import CardBottomZoom from "./CardBottomZoom"
+
+// CSS
+import "./css/CardBottom.css"
 
 function CardBottom({ card }) {
   const location = useLocation();
@@ -16,4 +21,4 @@ function CardBottom({ card }) {
   )
 }
 
-export default CardBottom;
+export default CardBottom

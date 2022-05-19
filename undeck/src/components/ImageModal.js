@@ -1,5 +1,8 @@
+// Libraries
 import { useSelector } from "react-redux"
-import Modal from "../components/Modal"
+
+// Components
+import Modal from "./Modal"
 
 function ImageModal() {
   const { type, card } = useSelector(state => state.modal)

@@ -1,4 +1,7 @@
+// Libraries
 import { useDispatch } from "react-redux"
+
+// Utils
 import { removeFromDeck } from "../redux/deck"
 
 function CardBottomRemove({ card }) {
@@ -15,4 +18,4 @@ function CardBottomRemove({ card }) {
   )
 }
 
-export default CardBottomRemove;
+export default CardBottomRemove

@@ -1,14 +1,17 @@
-import "./css/DeckNav.css";
-import DeckButton from "./DeckButton.js";
-import DeckDelete from "./DeckDelete.js";
+// Components
+import DeckButton from "./DeckButton"
+import DeckDelete from "./DeckDelete"
+
+// CSS
+import "./css/DeckNav.css"
 
 function Nav({ deck }) {
   return (
     <nav className="header__deck">
-      <DeckButton deck={deck} />
+      <DeckButton />
       <DeckDelete deck={deck} />
     </nav>
   )
 }
 
-export default Nav;
+export default Nav

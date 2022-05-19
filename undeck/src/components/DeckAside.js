@@ -1,7 +1,12 @@
-import { openDeckPDF } from "../utils";
-import "./css/DeckAside.css";
-import DeckChart from "./DeckChart.js";
-import DownloadSVG from "./svg/DownloadSVG.js";
+// Utils
+import { openDeckPDF } from "../utils"
+
+// Components
+import DeckChart from "./DeckChart"
+import DownloadSVG from "./svg/DownloadSVG"
+
+// CSS
+import "./css/DeckAside.css"
 
 function DeckAside() {
   return (
@@ -19,4 +24,4 @@ function DeckAside() {
   )
 }
 
-export default DeckAside;
+export default DeckAside

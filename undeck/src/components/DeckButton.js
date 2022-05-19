@@ -1,8 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import DeckSVG from "./svg/DeckSVG.js";
+// Libraries
+import { Link, useLocation } from "react-router-dom"
+import { useSelector } from "react-redux"
 
-function DeckButton({ deck }) {
+// Components
+import DeckSVG from "./svg/DeckSVG"
+
+function DeckButton() {
   const location = useLocation();
   const { count } = useSelector(state => state.deck)
   return (
@@ -19,4 +22,4 @@ function DeckButton({ deck }) {
   )
 }
 
-export default DeckButton;
+export default DeckButton

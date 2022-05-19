@@ -1,6 +1,11 @@
+// Libraries
 import uuid from "react-uuid"
-import "./css/DeckCards.css";
-import Card from "./Card.js";
+
+// Components
+import Card from "./Card"
+
+// CSS
+import "./css/DeckCards.css"
 
 function DeckCards({ deck }) {
   return (
@@ -10,4 +15,4 @@ function DeckCards({ deck }) {
   )
 }
 
-export default DeckCards;
+export default DeckCards

@@ -1,3 +1,4 @@
+// Libraries
 import { useSelector } from "react-redux"
 import { Bar } from "react-chartjs-2"
 // eslint-disable-next-line no-unused-vars
@@ -38,4 +39,4 @@ function DeckChart() {
   )
 }
 
-export default DeckChart;
+export default DeckChart

@@ -1,4 +1,7 @@
+// Libraries
 import { Link } from "react-router-dom";
+
+// CSS
 import "./css/Logo.css";
 
 function Logo() {
@@ -9,4 +12,4 @@ function Logo() {
   )
 }
 
-export default Logo;
+export default Logo

@@ -7,8 +7,8 @@ export function openDeckPDF(deckString) {
         window.URL.createObjectURL(res, { type: "application/pdf" }),
         "_blank",
         "noreferrer"
-      );
-    });
+      )
+    })
 }
 
 export async function getCards(pageSize = 50) {
@@ -32,7 +32,7 @@ export function getDeck() {
   return fetch("api/deck/" + window.localStorage.deck)
     .then(statusCheck)
     .then(res => res.json())
-    .catch(handleError);
+    .catch(handleError)
 }
 
 export function getSearch(query) {
@@ -62,10 +62,10 @@ export function deleteLocalDeck() {
 }
 
 async function statusCheck(res) {
-  if (!res.ok) throw new Error(await res.text());
-  return res;
+  if (!res.ok) throw new Error(await res.text())
+  return res
 }
 
 function handleError(err) {
-  console.error(err);
+  console.error(err)
 }

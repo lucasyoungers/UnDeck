@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { deleteDeck } from "../redux/deck";
-import DeleteSVG from "./svg/DeleteSVG.js";
+// Libraries
+import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
+
+// Utils
+import { deleteDeck } from "../redux/deck"
+
+// Components
+import DeleteSVG from "./svg/DeleteSVG"
 
 function DeckDelete({ deck }) {
   const dispatch = useDispatch()
@@ -18,4 +23,4 @@ function DeckDelete({ deck }) {
   )
 }
 
-export default DeckDelete;
+export default DeckDelete

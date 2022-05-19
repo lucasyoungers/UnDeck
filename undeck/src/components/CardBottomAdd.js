@@ -1,4 +1,7 @@
+// Libraries
 import { useDispatch } from "react-redux"
+
+// Utils
 import { addToDeck } from "../redux/deck"
 
 function CardBottomAdd({ card }) {
@@ -16,4 +19,4 @@ function CardBottomAdd({ card }) {
   )
 }
 
-export default CardBottomAdd;
+export default CardBottomAdd
