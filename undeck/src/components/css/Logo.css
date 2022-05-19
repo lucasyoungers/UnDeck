@@ -22,7 +22,7 @@
 }
 
 .header__logo {
-  font-size: var(--nav-height);
+  font-size: var(--nav-height) !important;
   font-family: "Unown";
   text-transform: uppercase;
   cursor: pointer;
