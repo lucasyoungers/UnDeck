@@ -4,7 +4,7 @@ export function openDeckPDF(deckString) {
     .then(res => res.blob())
     .then(res => {
       window.open(
-        window.URL.createObjectURL(res, {type: "application/pdf"}),
+        window.URL.createObjectURL(res, { type: "application/pdf" }),
         "_blank",
         "noreferrer"
       );
@@ -16,7 +16,7 @@ export async function getCards(pageSize = 50) {
     const rarities = await (await fetch("/api/rarities")).json()
     const lowRarities = ["Common", "Uncommon", "Rare", "Rare Holo", "Promo"]
     const highRarities = rarities.filter(rarity => !lowRarities.includes(rarity))
-    const randomURL = "/api/random?pageSize=" + pageSize + "&q=!rarity:\"" + highRarities.join("|") + "\""
+    const randomURL = `/api/random?pageSize=${pageSize}&q=!rarity:"${highRarities.join("|")}"`
     return fetch(randomURL)
       .then(statusCheck)
       .then(res => res.json())

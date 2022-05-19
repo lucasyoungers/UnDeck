@@ -1,0 +1,107 @@
+:root {
+  --modal-spacing: 1.5rem;
+  --modal-name: 2rem;
+  --modal-card-type: 1rem;
+  --modal-header-right: calc(var(--modal-name) + var(--modal-card-type));
+}
+
+.modal__header {
+  display: flex;
+}
+
+.modal__header__left {
+  flex: 1;
+}
+
+.modal__name {
+  font-size: var(--modal-name);
+}
+
+.modal__card-type {
+  font-size: var(--modal-card-type);
+}
+
+.modal__hp--label {
+  font-size: calc(var(--modal-header-right) / 3);
+}
+
+.modal__hp--value {
+  font-size: var(--modal-header-right);
+}
+
+.modal__header__icon {
+  width: var(--modal-header-right);
+  height: var(--modal-header-right);
+  margin: auto 0;
+  border: 5px inset var(--p-light-purple);
+  border-radius: 50%;
+  margin-left: 0.5rem;
+}
+
+.modal__divider {
+  border: 0.5px solid black;
+  margin-top: var(--modal-spacing);
+}
+
+.modal__effect {
+  margin-top: var(--modal-spacing);
+}
+
+.modal__effect--flex {
+  display: flex;
+  margin-bottom: 0.25rem;
+}
+
+.modal__effect__icon {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.25em;
+}
+
+.modal__effect__Ability,
+.modal__effect__Poké-Power {
+  color: rgb(181, 17, 17);
+  font-size: 2rem;
+}
+
+.modal__effect__Poké-Body {
+  color: rgb(32, 155, 32);
+  font-size: 2rem;
+}
+
+.modal__effect__Pokémon-Power {
+  color: rgb(82, 35, 95);
+  font-size: 2rem;
+}
+
+.modal__effect__name {
+  margin-left: 0.25rem;
+  font-size: 2rem;
+  flex: 1;
+}
+
+.modal__effect__damage {
+  font-size: 2rem;
+}
+
+.modal__footer {
+  margin-top: var(--modal-spacing);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.modal__wrrc {
+  font-size: 1.5rem;
+  display: flex;
+}
+
+.modal__wrrc__icon {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  margin-left: 0.25rem;
+}
+
+.modal__wrrc__mod {
+  margin-left: 0.25rem;
+}

@@ -5,7 +5,6 @@ import Chart from "chart.js/auto" // makes the chart work for some reason
 
 function DeckChart() {
   const { supertypes } = useSelector(state => state.deck)
-  console.log(supertypes)
 
   return (
     <div className="deck__aside__chart">

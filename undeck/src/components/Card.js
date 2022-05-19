@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { setType } from "../redux/modal.js"
+import { setType, setCard } from "../redux/modal.js"
 import CardBottom from "./CardBottom.js"
 import CardCounter from "./CardCounter.js"
 
@@ -16,6 +16,7 @@ function Card({ card, count }) {
         loading="lazy"
         onClick={() => {
           dispatch(setType("text"))
+          dispatch(setCard(card))
         }}
       />
       <CardBottom card={card} />
