@@ -25,8 +25,8 @@ function TextModal() {
   }
 
   const rules = card.rules?.map(rule => <p className="modal__effect" key={uuid()}>{rule}</p>)
-  const abilities = card.abilities?.map(ability => <ModalAbility ability={ability} />)
-  const attacks = card.attacks?.map(attack => <ModalAttack attack={attack} />)
+  const abilities = card.abilities?.map(ability => <ModalAbility ability={ability} key={uuid()} />)
+  const attacks = card.attacks?.map(attack => <ModalAttack attack={attack} key={uuid()} />)
 
   const wrrcToIcons = wrrcList => wrrcList?.map(wrrc => (
     <img
