@@ -50,7 +50,7 @@ function TextModal() {
         {card.hp && <h3 className="modal__hp--value"><span className="modal__hp--label">HP </span>{card.hp}</h3>}
         {card.types && card.types.map(type => <img className="modal__header__icon" src={`type_icons/${type}.svg`} alt={type} key={uuid()} />)}
       </header>
-      {!(card.supertype === "Energy" && card.subtypes.includes("Basic")) && <hr className="modal__divider" />}
+      {!(card.supertype === "Energy" && card.subtypes?.includes("Basic")) && <hr className="modal__divider" />}
       <main className="modal__body">
         {rules && <section className="modal__rules">{rules}</section>}
         {abilities && <section className="modal__abilities">{abilities}</section>}
