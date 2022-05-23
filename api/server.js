@@ -21,81 +21,86 @@ pokemon.configure({ apiKey: KEY })
 // Endpoints
 // =========
 
-app.get("/api/deck/:deckString", async (req, res) => {
-  try {
-    const deckString = req.params.deckString
-    const ids =  deckString.split("|")
-    const deck = await Promise.all(ids.map(id => pokemon.card.find(id)))
-    res.json(deck)
-  } catch (err) {
-    console.error(err)
-    res.status(500).send("on no! our code! it's broken!")
-  }
-})
-
-app.get("/api/pdf/:deckString", async (req, res) => {
-  try {
-    const ids = req.params.deckString.split("|")
-    const deck = await Promise.all(ids.map(id => pokemon.card.find(id)))
-    const images = deck.map(card => card.images.large)
-    const buffer = Buffer.from(await makePDF(images))
-    res.type("pdf").send(buffer)
-  } catch (err) {
-    console.error(err)
-    res.status(500).send("oh no! our code! it's broken!")
-  }
-})
-
+// get a given number of random cards given a query
 app.get("/api/random", async (req, res) => {
   try {
-    const q = req.query.q || ""
-    const pageSize = req.query.pageSize || 1
-    const page = Math.floor(Math.random() * (await pokemon.card.where({ q, pageSize: 1 })).totalCount / pageSize) || 1
-    const cards = await pokemon.card.where({ q, pageSize, page })
-    res.json(cards)
+    const { q, pageSize = 1 } = req.query
+    if (q !== undefined) {
+      const dummy = await pokemon.card.where({ q, pageSize: 1 })
+      const page = Math.floor(Math.random() * dummy.totalCount / pageSize) || 1
+      const cards = await pokemon.card.where({ q, pageSize, page })
+      res.json(cards)
+    } else {
+      res.status(400).type("text").send("Missing required query parameter: q")
+    }
   } catch (err) {
-    res.status(500).type("text").send("something went wrong on the server")
+    res.status(500).type("text").send("Oh no! Team Rocket stole all of our cards!")
   }
 })
 
+// get all cards that match a given query
+app.get("/api/search", async (req, res) => {
+  try {
+    const q = req.query.q
+    if (q !== undefined) {
+      const cards = await pokemon.card.where({ q })
+      res.json(cards)
+    } else {
+      res.status(400).type("text").send("Missing required query parameter: q")
+    }
+  } catch (err) {
+    res.status(500).type("text").send("We can't find your cards! Looks like Team Rocket is up to no good.")
+  }
+})
+
+// get all the cards that match a certain name
+app.get("/api/cards", async (req, res) => {
+  try {
+    const name = req.query.name
+    if (name !== undefined) {
+      const cards = await pokemon.card.where({ q: `name:"*${name}*"` })
+      res.json(cards)
+    } else {
+      res.status(400).type("text").send("Missing required query parameter: name")
+    }
+  } catch (err) {
+    res.status(500).type("text").send("Oops, looks like Meowth stole your request!")
+  }
+})
+
+// get the json data for a given deck string
+app.get("/api/deck/:deckString", async (req, res) => {
+  try {
+    const deck = await getDeckCards(req.params.deckString)
+    res.json(deck)
+  } catch (err) {
+    res.status(500).type("text").send("We can't find your deck, have you tried unsleeving it and resleeving it again?")
+  }
+})
+
+// make a pdf for a given deck string
+app.get("/api/pdf/:deckString", async (req, res) => {
+  try {
+    const deck = await getDeckCards(req.params.deckString)
+    const images = deck.map(card => card.images.large)
+    const pdf = await makePDF(images)
+    const buffer = Buffer.from(pdf)
+    res.type("pdf").send(buffer)
+  } catch (err) {
+    res.status(500).send("We can't build your deck, have you tried unsleeving it and resleeving it again?")
+  }
+})
+
+// get all the rarities
 app.get("/api/rarities", async (req, res) => {
   try {
     res.json(await pokemon.rarity.all())
   } catch (err) {
-    res.status(500).type("text").send("something went wrong on the server")
+    res.status(500).type("text").send("Due to a series of mishaps, all cards have arbitrarily made Ultra-Super-Omega Rare.")
   }
 })
 
-app.get("/api/cards", async (req, res) => {
-  try {
-    const name = req.query.name
-    const cards = await pokemon.card.where({ q: `name:"*${name}*"` })
-    res.json(cards)
-  } catch (err) {
-    res.status(400).type("text").send("invalid request")
-  }
-})
-
-app.get("/api/*", async (req, res) => {
-  let path = req.params[0]
-  let query = ""
-  let queryKeys = Object.keys(req.query)
-  queryKeys.forEach(key => {
-    query += "&" + key + "=" + req.query[key]
-  });
-  if (query) {
-    query = "?" + query.slice(1)
-  }
-  let full = URL + "/" + path + query
-  try {
-    let result = await axios.get(full, { headers: HEADERS })
-    statusCheck(result)
-    res.json(result.data)
-  } catch (err) {
-    res.status(400).type("text").send("bad request")
-  }
-})
-
+// send file backup endpoint
 app.get("*", (req, res) => {
   res.type("html").sendFile(path.join(__dirname, "../undeck/build/index.html"))
 })
@@ -104,21 +109,32 @@ app.get("*", (req, res) => {
 // Helper Functions
 // ================
 
+/**
+ * Gets all the card objects from a given deck string and returns them in an array
+ * @param {String} deckString - deck string with | delimiter
+ * @returns {Promise<Array<Object>>} - promise that resolves to an array of card objects
+ */
+async function getDeckCards(deckString) {
+  return Promise.all(deckString.split("|").map(id => pokemon.card.find(id)))
+}
+
+/**
+ * Constructs a pdf given an array of card image urls.
+ * @param {Array<String>} deck - array of card image urls
+ * @returns {Promise<ArrayBuffer>} - array buffer for the deck pdf
+ */
 async function makePDF(deck) {
   const doc = new jsPDF({ format: "letter", unit: "in" })
   for (let i = 0; i < deck.length; i++) {
-    if (i > 8 && i % 9 === 0) {
-      doc.addPage("letter")
-    }
-    let x = 0.53 + 2.49 * (i % 3);
-    let y = 0.3 + 3.47 * Math.floor((i % 9) / 3)
-    let res = await axios.get(deck[i], {
+    if (i > 8 && i % 9 === 0) doc.addPage("letter")
+    const x = 0.53 + 2.49 * (i % 3)
+    const y = 0.3 + 3.47 * Math.floor((i % 9) / 3)
+    const buffer = await axios.get(deck[i], {
       headers: { "X-API-KEY": KEY },
       responseType: "arraybuffer"
-    })
-    statusCheck(res)
-    let img = Buffer.from(res.data, "binary").toString("base64")
-    let data = "data:image/png;base64," + img
+    }).then(statusCheck)
+    const img = Buffer.from(buffer.data, "binary").toString("base64")
+    const data = "data:image/png;base64," + img
     doc.addImage(data, "png", x, y, 2.48, 3.46)
   }
   return doc.output("arraybuffer")
@@ -130,9 +146,7 @@ async function makePDF(deck) {
  * @returns {Promise} - returns the passed response as a promise
  */
  async function statusCheck(res) {
-  if (res.statusText !== "OK") {
-    throw new Error("an error occurred, try again later")
-  }
+  if (res.statusText !== "OK") throw new Error("an error occurred, try again later")
   return res
 }
 
