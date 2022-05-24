@@ -19,9 +19,7 @@ function Header() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (window.localStorage.deck) {
-      getDeck().then(deck => dispatch(setDeck(deck)))
-    }
+    if (window.localStorage.deck) getDeck(window.localStorage.deck).then(deck => dispatch(setDeck(deck)))
     // eslint-disable-next-line
   }, [])
 

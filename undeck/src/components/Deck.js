@@ -24,9 +24,7 @@ function Deck() {
   const onLoadFunction = async () => {
     try {
       setLoading(true)
-      if (window.localStorage.deck) {
-        await getDeck(window.localStorage.deck).then(deck => dispatch(setDeck(deck)))
-      }
+      if (window.localStorage.deck) await getDeck(window.localStorage.deck).then(deck => dispatch(setDeck(deck)))
       setLoading(false)
     } catch (err) {
       console.error(err)
