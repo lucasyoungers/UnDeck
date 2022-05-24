@@ -25,7 +25,7 @@ function Deck() {
     try {
       setLoading(true)
       if (window.localStorage.deck) {
-        await getDeck().then(deck => dispatch(setDeck(deck)))
+        await getDeck(window.localStorage.deck).then(deck => dispatch(setDeck(deck)))
       }
       setLoading(false)
     } catch (err) {

@@ -1,5 +1,5 @@
 export function openDeckPDF(deckString) {
-  fetch("/api/pdf/" + deckString)
+  fetch(`/api/pdf/${deckString}`)
     .then(statusCheck)
     .then(res => res.blob())
     .then(res => {
@@ -28,18 +28,18 @@ export async function getCards(pageSize = 50) {
   }
 }
 
-export function getDeck() {
-  return fetch("api/deck/" + window.localStorage.deck)
-    .then(statusCheck)
-    .then(res => res.json())
-    .catch(handleError)
-}
-
-export function getSearch(query) {
-  return fetch("api/cards/" + query)
+export async function getSearch(query) {
+  return fetch("/api/search" + query)
     .then(statusCheck)
     .then(res => res.json())
     .then(res => res.data)
+    .catch(handleError)
+}
+
+export async function getDeck(deckString) {
+  return fetch(`/api/deck/${deckString}`)
+    .then(statusCheck)
+    .then(res => res.json())
     .catch(handleError)
 }
 

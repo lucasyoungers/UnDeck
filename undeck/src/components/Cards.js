@@ -61,7 +61,7 @@ function Cards() {
 
   return (
     <>
-      {loading ? <LoadingIcon /> : <><main className="cards">{cards.map(card => <Card card={card} key={uuid()} />)}</main>{moreLoading && <MoreLoading />}</>}
+      {loading ? <LoadingIcon /> : <><main className="cards">{cards?.map(card => <Card card={card} key={uuid()} />)}</main>{moreLoading && <MoreLoading />}</>}
     </>
   )
 }

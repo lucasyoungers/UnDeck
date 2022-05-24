@@ -5,6 +5,10 @@
   --modal-header-right: calc(var(--modal-name) + var(--modal-card-type));
 }
 
+.ReactModal__Content--after-open {
+  padding: var(--modal-spacing) !important;
+}
+
 .modal__header {
   display: flex;
 }
@@ -84,7 +88,7 @@
   font-size: 2rem;
 }
 
-.modal__footer {
+.modal__wrrc-container {
   margin-top: var(--modal-spacing);
   display: grid;
   gap: 0.5rem;
@@ -104,4 +108,8 @@
 
 .modal__wrrc__mod {
   margin-left: 0.25rem;
+}
+
+.modal__footer {
+  margin-top: var(--modal-spacing);
 }

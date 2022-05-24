@@ -18,7 +18,7 @@ function TextModal() {
     if (!card.evolvesFrom) {
       cardType = <>Basic Pokémon</>
     } else {
-      cardType = <>Evolves From <a href={`?name=${card.evolvesFrom}`}>{card.evolvesFrom}</a></>
+      cardType = <>Evolves From <a href={`?q=name:"${card.evolvesFrom}"`}>{card.evolvesFrom}</a></>
     }
   } else {
     cardType = <>{card.supertype}{card.subtypes?.length && ` - ${card.subtypes?.[0]}`}</>
@@ -40,6 +40,8 @@ function TextModal() {
   const resistance = <p className="modal__wrrc">Resistance:{wrrcToIcons(card.resistances)}<span className="modal__wrrc__mod">{card.resistances?.[0].value}</span></p>
   const retreatCost = <p className="modal__wrrc">Retreat Cost:{wrrcToIcons(card.retreatCost?.map(rc => ({ type: rc })))}</p>
 
+  const set = <p className="modal__set"><a href={`?q=set.id:${card.set?.id}`}>{card.set?.name}</a>: {card.id}</p>
+
   return (
     <Modal isOpen={type === "text"} role="text">
       <header className="modal__header">
@@ -57,7 +59,9 @@ function TextModal() {
         {attacks && <section className="modal__attacks">{attacks}</section>}
       </main>
       {card.supertype === "Pokémon" && <hr className="modal__divider" />}
-      {card.supertype === "Pokémon" && <footer className="modal__footer">{weakness}{resistance}{retreatCost}</footer>}
+      {card.supertype === "Pokémon" && <section className="modal__wrrc-container">{weakness}{resistance}{retreatCost}</section>}
+      {card.set && <hr className="modal__divider" />}
+      {card.set && <footer className="modal__footer">{set}{}</footer>}
     </Modal>
   )
 }

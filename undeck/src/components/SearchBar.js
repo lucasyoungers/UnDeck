@@ -17,12 +17,14 @@ function SearchBar() {
         type="submit"
         onClick={e => {
           e.preventDefault()
-          let bar = document.querySelector(".header__search__bar")
-          let val = bar.value.trim()
+          const bar = document.querySelector(".header__search__bar")
+          const val = bar.value.trim()
+          let search = `q=name:"*${val}*"`
           if (!val) return
+          if (val === "N") search = `q=name:"N"`
           navigate({
             pathname: "/",
-            search: `?name=${val}`
+            search
           })
           bar.value = ""
         }}
