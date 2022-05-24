@@ -1,9 +1,19 @@
+@keyframes expand {
+  from {
+    height: 0;
+    margin: 0 auto;
+  }
+  to {
+    height: normal;
+    margin: 5rem auto;
+  }
+}
+
 .loading-icon {
   display: block;
   margin: 5rem auto;
 }
 
 .more-loading {
-  display: block;
-  margin: 2rem auto;
+  animation: expand 0.5s;
 }

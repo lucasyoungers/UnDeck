@@ -7,7 +7,7 @@ import "./css/LoadingIcon.css"
 function MoreLoading() {
   return (
     <ThreeDots
-      className="more-loading"
+      className="loading-icon more-loading"
       fill="#3b165c"
     />
   )
