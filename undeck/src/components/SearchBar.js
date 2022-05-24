@@ -18,13 +18,14 @@ function SearchBar() {
         onClick={e => {
           e.preventDefault()
           const bar = document.querySelector(".header__search__bar")
-          const val = bar.value.trim()
-          let search = `q=name:"*${val}*"`
-          if (!val) return
-          if (val === "N") search = `q=name:"N"`
+          const terms = bar.value.split(/\s+/).map(term => {
+            if (term === "N") return `name:"N"`
+            if (term.split(":").length === 1) return `name:"*${term}*"`
+            return term
+          });
           navigate({
             pathname: "/",
-            search
+            search: `q=${terms.join("+")}`
           })
           bar.value = ""
         }}
