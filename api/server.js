@@ -53,21 +53,6 @@ app.get("/api/search", async (req, res) => {
   }
 })
 
-// get all the cards that match a certain name
-app.get("/api/cards", async (req, res) => {
-  try {
-    const name = req.query.name
-    if (name !== undefined) {
-      const cards = await pokemon.card.where({ q: `name:"*${name}*"` })
-      res.json(cards)
-    } else {
-      res.status(400).type("text").send("Missing required query parameter: name")
-    }
-  } catch (err) {
-    res.status(500).type("text").send("Oops, looks like Meowth stole your request!")
-  }
-})
-
 // get the json data for a given deck string
 app.get("/api/deck/:deckString", async (req, res) => {
   try {
