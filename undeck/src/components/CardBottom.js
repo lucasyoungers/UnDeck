@@ -14,7 +14,8 @@ function CardBottom({ card }) {
   const location = useLocation();
   return (
     <section className="card__bottom">
-      {location.pathname === "/deck" ? <CardBottomRemove card={card} /> : <CardBottomAdd card={card} />}
+      <CardBottomAdd card={card} />
+      {location.pathname === "/deck" && <CardBottomRemove card={card} />}
       <CardBottomDownload card={card} />
       <CardBottomZoom card={card} />
     </section>
