@@ -1,11 +1,12 @@
-.deck__aside {
+.deck__aside__content {
   background-color: white;
-  height: 100%;
   padding: var(--gap);
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   row-gap: var(--gap);
+  position: sticky;
+  top: var(--gap);
 }
 
 .deck__aside__chart {
