@@ -18,11 +18,17 @@ function SearchBar() {
         onClick={e => {
           e.preventDefault()
           const bar = document.querySelector(".header__search__bar")
-          const terms = bar.value.split(/\s+/).map(term => {
-            if (term === "N") return `name:"N"`
-            if (term.split(":").length === 1) return `name:"*${term}*"`
-            return term
-          });
+          let nameTerms = []
+          let terms = []
+          bar.value.split(/\s+/).forEach(term => {
+            if (term.split(":").length === 1) nameTerms.push(term)
+            else terms.push(term)
+          })
+          let name = nameTerms.join(" ")
+          if (name !== "N") name = `*${name}*`
+          name = `name:"${name}"`
+          terms.unshift(name)
+          console.log(terms)
           navigate({
             pathname: "/",
             search: `q=${terms.join("+")}`
