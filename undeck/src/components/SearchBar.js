@@ -24,11 +24,12 @@ function SearchBar() {
             if (term.split(":").length === 1) nameTerms.push(term)
             else terms.push(term)
           })
-          let name = nameTerms.join(" ")
-          if (name !== "N") name = `*${name}*`
-          name = `name:"${name}"`
-          terms.unshift(name)
-          console.log(terms)
+          if (nameTerms.length > 0) {
+            let name = nameTerms.join(" ")
+            if (name !== "N") name = `*${name}*`
+            name = `name:"${name}"`
+            terms.unshift(name)
+          }
           navigate({
             pathname: "/",
             search: `q=${terms.join("+")}`
