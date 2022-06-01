@@ -43,7 +43,8 @@ app.get("/api/search", async (req, res) => {
   try {
     const q = req.query.q
     if (q !== undefined) {
-      const cards = await pokemon.card.where({ q })
+      const cards = await pokemon.card.where({ q, orderBy: "-set.releaseDate, number" })
+      console.log(cards)
       res.json(cards)
     } else {
       res.status(400).type("text").send("Missing required query parameter: q")
