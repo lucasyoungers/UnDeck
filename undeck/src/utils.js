@@ -61,6 +61,22 @@ export function deleteLocalDeck() {
   window.localStorage.deck = ""
 }
 
+export function parseTerms(unparsed) {
+  let nameTerms = []
+  let terms = []
+  unparsed.split(/\s+/).forEach(term => {
+    if (term.split(":").length === 1) nameTerms.push(term)
+    else terms.push(term)
+  })
+  if (nameTerms.length > 0) {
+    let name = nameTerms.join(" ")
+    if (name !== "N") name = `*${name}*`
+    name = `name:"${name}"`
+    terms.unshift(name)
+  }
+  return terms
+}
+
 async function statusCheck(res) {
   if (!res.ok) throw new Error(await res.text())
   return res

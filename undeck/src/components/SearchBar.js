@@ -1,6 +1,9 @@
 // Libraries
 import { useNavigate } from "react-router-dom"
 
+// Utils
+import { parseTerms } from "../utils"
+
 // Components
 import SearchSVG from "./svg/SearchSVG"
 
@@ -18,18 +21,7 @@ function SearchBar() {
         onClick={e => {
           e.preventDefault()
           const bar = document.querySelector(".header__search__bar")
-          let nameTerms = []
-          let terms = []
-          bar.value.split(/\s+/).forEach(term => {
-            if (term.split(":").length === 1) nameTerms.push(term)
-            else terms.push(term)
-          })
-          if (nameTerms.length > 0) {
-            let name = nameTerms.join(" ")
-            if (name !== "N") name = `*${name}*`
-            name = `name:"${name}"`
-            terms.unshift(name)
-          }
+          const terms = parseTerms(bar.value)
           navigate({
             pathname: "/",
             search: `q=${terms.join("+")}`
