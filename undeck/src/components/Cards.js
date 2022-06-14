@@ -38,7 +38,7 @@ function Cards() {
   }
 
   const onScrollFunction = async () => {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !window.location.search) {
       try {
         if (location.search === "") {
           window.removeEventListener("scroll", onScrollFunction)
