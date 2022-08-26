@@ -4,6 +4,10 @@
     "start": "npm run build:app && npm run start:server",
     "build:app": "cd undeck && npm install & npm run build",
     "start:server": "cd api && npm start",
-    "build": "npx webpack"
+    "build": "webpack"
+  },
+  "dependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   }
 }
